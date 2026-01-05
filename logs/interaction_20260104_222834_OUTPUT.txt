@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "task_name": "Análisis del sistema de OCR",
+      "hours": 4
+    },
+    {
+      "task_name": "Implementación del backend FastAPI",
+      "hours": 8
+    },
+    {
+      "task_name": "Configuración inicial del proyecto",
+      "hours": 2.5
+    }
+  ]
+}
