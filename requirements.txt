@@ -1,0 +1,7 @@
+pandas
+openpyxl
+requests
+python-dotenv
+pydantic-settings
+pydantic
+holidays
