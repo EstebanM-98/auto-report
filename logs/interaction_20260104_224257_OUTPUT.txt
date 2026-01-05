@@ -1,0 +1,40 @@
+{
+  "tasks": [
+    {
+      "task_name": "Plan implementation details",
+      "hours": 1
+    },
+    {
+      "task_name": "Implement authentication",
+      "hours": 2.5
+    },
+    {
+      "task_name": "Configure backend for PDF processing",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Integrate OCR and data extraction tools",
+      "hours": 1.8
+    },
+    {
+      "task_name": "Develop transaction classification system",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Implement user management functionality",
+      "hours": 2.5
+    },
+    {
+      "task_name": "Initialize project configuration",
+      "hours": 1.5
+    },
+    {
+      "task_name": "Set up backend for example financial data",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Plan and prepare structured financial statement",
+      "hours": 1.8
+    }
+  ]
+}

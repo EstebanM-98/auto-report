@@ -1,0 +1,68 @@
+{
+  "tasks": [
+    {
+      "task_name": "Plan implementation for FastAPI backend",
+      "hours": 1
+    },
+    {
+      "task_name": "Design database schema for project",
+      "hours": 1
+    },
+    {
+      "task_name": "Create configuration files for project",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Set up backend environment",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Develop authentication system for users",
+      "hours": 2.5
+    },
+    {
+      "task_name": "Implement OCR functionality for PDF processing",
+      "hours": 1.5
+    },
+    {
+      "task_name": "Develop data extraction and classification algorithm",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Create example structured financial statement data",
+      "hours": 1.0
+    },
+    {
+      "task_name": "Implement user management system",
+      "hours": 1.5
+    },
+    {
+      "task_name": "Test authentication system for users",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Integrate OCR functionality with data extraction and classification algorithm",
+      "hours": 3
+    },
+    {
+      "task_name": "Refactor database schema to improve performance",
+      "hours": 1.5
+    },
+    {
+      "task_name": "Update configuration files for project",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Set up logging and monitoring system for backend",
+      "hours": 2.0
+    },
+    {
+      "task_name": "Test transaction classification algorithm",
+      "hours": 1.5
+    },
+    {
+      "task_name": "Create documentation for project features",
+      "hours": 2.0
+    }
+  ]
+}

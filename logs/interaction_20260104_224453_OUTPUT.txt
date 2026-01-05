@@ -1,0 +1,60 @@
+{
+  "tasks": [
+    {
+      "task_name": "Planificación de la implementación de FastAPI",
+      "hours": 1
+    },
+    {
+      "task_name": "Implementación de FastAPI backend para OCR y procesamiento de documentos",
+      "hours": 2.5
+    },
+    {
+      "task_name": "Configuración del servidor backend con FastAPI",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Creación de ejemplo de estructura de declaración financiera con data",
+      "hours": 1
+    },
+    {
+      "task_name": "Implementación de autenticación en el backend",
+      "hours": 2.5
+    },
+    {
+      "task_name": "Definición de ruta y endpoints en FastAPI",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Conexión con bases de datos y almacenamiento de datos",
+      "hours": 1
+    },
+    {
+      "task_name": "Implementación de clasificación de transacciones",
+      "hours": 2
+    },
+    {
+      "task_name": "Configuración del entorno de desarrollo para FastAPI",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Realización de pruebas unitarias y de integración",
+      "hours": 1
+    },
+    {
+      "task_name": "Creación de documentación de API y herramientas adicionales",
+      "hours": 2
+    },
+    {
+      "task_name": "Implementación de seguridad y autenticación en el backend",
+      "hours": 3
+    },
+    {
+      "task_name": "Finalización del desarrollo y ajuste de pruebas",
+      "hours": 0.5
+    },
+    {
+      "task_name": "Desplegar la aplicación al entorno de producción",
+      "hours": 2
+    }
+  ]
+}

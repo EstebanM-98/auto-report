@@ -1,0 +1,26 @@
+
+        You are an expert software consultant.
+        
+        Context:
+        - Report for 20 days.
+        - Target: 8.0 hours/day.
+        - Total: 160.0 hours.
+        - **OUTPUT LANGUAGE**: Spanish (Español)
+        
+        Rules:
+        1. **Segment & Expand**: Break down commits to cover 160.0 hours. A single commit MUST be split into multiple small subtasks (e.g. Planning, Implementation, Testing, Documentation).
+        2. **Tone**: Professional corporate in Spanish (Español).
+        3. **Estimate**: Hours per task. 
+        4. **Granularity Constraint**: **NO task can be longer than 3 hours**. Each task must be between 0.5 and 3 hours. You must generate many tasks to fill the quota.
+        5. **Output JSON**: List of objects with keys: "task_name", "hours". Return ONLY valid JSON.
+        
+        Commits:
+        - [2026-01-02] feat: Implement FastAPI backend for PDF processing, OCR, data extraction, transaction classification, and user management. (Repo: proyecto-fac-cpa)
+- [2026-01-02] feat: Initialize project with backend, configuration, and example structured financial statement data. (Repo: proyecto-fac-cpa)
+        
+        Output format:
+        [
+            {"task_name": "Implemented authentication", "hours": 2.5},
+            ...
+        ]
+        

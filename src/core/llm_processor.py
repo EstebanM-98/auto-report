@@ -49,10 +49,12 @@ class DeepSeekProcessor:
         - **OUTPUT LANGUAGE**: {lang_instruction}
         
         Rules:
-        1. **Segment & Expand**: Break down commits to cover {total_hours_needed} hours. Split 1 commit into multiple tasks (Analysis, Dev, Test) if needed.
+        1. **Segment & Expand**: Break down commits to cover {total_hours_needed} hours. A single commit MUST be split into multiple small subtasks (e.g. Planning, Implementation, Testing, Documentation).
         2. **Tone**: Professional corporate in {lang_instruction}.
-        3. **Estimate**: Hours per task.
-        4. **Output JSON**: List of objects with keys: "task_name", "hours". Return ONLY valid JSON.
+        3. **Estimate**: Hours per task. 
+        4. **Granularity Constraint**: **NO task can be longer than 3 hours**. Each task must be between 0.5 and 3 hours. You must generate many tasks to fill the quota.
+        5. **Output JSON**: List of objects with keys: "task_name", "hours". Return ONLY valid JSON.
+        6. **LANGUAGE**: All "task_name" values MUST be in {lang_instruction}. Do NOT use English unless the technical term requires it.
         
         Commits:
         {commit_text}

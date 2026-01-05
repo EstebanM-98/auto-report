@@ -61,32 +61,89 @@ class TaskDistributor:
             total_h = sum(float(t['hours']) for t in current_tasks)
             
             if not current_tasks:
-                # Emergency filler if no tasks assigned (e.g. very few commits)
-                # This ensures we report 8 hours even if empty.
-                current_tasks.append({
-                    "task_name": "General review and maintenance of systems",
-                    "client_project": settings.DEFAULT_CLIENT_PROJECT,
-                    "hours": target_daily_hours
-                })
+                # Emergency filler if no tasks assigned.
+                # Split into chunks of max 2.5 hours to satisfy instructions.
+                remaining = target_daily_hours
+                chunk_size = 2.0
+                
+                filler_activities = [
+                    "General review and maintenance of systems",
+                    "Code optimization and technical debt reduction",
+                    "Documentation updates and process review",
+                    "Security patches and dependency updates"
+                ]
+                
+                idx = 0
+                while remaining > 0:
+                    h = min(remaining, chunk_size)
+                    current_tasks.append({
+                        "task_name": filler_activities[idx % len(filler_activities)],
+                        "client_project": settings.DEFAULT_CLIENT_PROJECT,
+                        "hours": h
+                    })
+                    remaining -= h
+                    idx += 1
+                    
                 total_h = target_daily_hours
 
-            # Calculate scale factor
-            if total_h > 0:
-                scale_factor = target_daily_hours / total_h
+            # Strategy:
+            # 1. If total < target: Add filler tasks to reach target (don't scale up coding tasks widely)
+            # 2. If total > target: Scale down proportionally (safe, as it reduces hours)
+            
+            if total_h < target_daily_hours:
+                deficit = target_daily_hours - total_h
+                chunk_size = 2.0 # Max size for fillers
                 
-                # Apply scale
-                running_sum = 0
-                for i, t in enumerate(current_tasks):
-                    # For last item, take the remainder to be exact
-                    if i == len(current_tasks) - 1:
-                        new_h = target_daily_hours - running_sum
-                    else:
-                        new_h = round(float(t['hours']) * scale_factor, 2)
-                        running_sum += new_h
+                if settings.LANGUAGE == 'es':
+                    filler_activities = [
+                        "Sincronización diaria con el equipo y actualización de estado",
+                        "Revisión de documentación y notas técnicas",
+                        "Optimización de código y reducción de deuda técnica",
+                        "Discusión técnica interna y planificación",
+                        "Gestión de correos pendientes y comunicación"
+                    ]
+                else:
+                    filler_activities = [
+                        "Daily team synchronization and status update",
+                        "Documentation review and technical notes",
+                        "Codebase optimization and cleanup",
+                        "Internal technical discussion",
+                        "Pending emails and communication"
+                    ]
+                idx = 0
+                while deficit > 0.01:
+                    h = min(deficit, chunk_size)
+                    # Don't make tinier tasks than 0.5 if possible, unless it's the last bit
+                    if h < 0.5 and deficit > 0.5:
+                         h = 0.5 
                     
-                    t['hours'] = max(0.1, new_h) # Avoid 0 or negative
-                    
-                # Store
-                final_schedule[day] = current_tasks
+                    current_tasks.append({
+                        "task_name": filler_activities[idx % len(filler_activities)],
+                        "client_project": settings.DEFAULT_CLIENT_PROJECT,
+                        "hours": round(h, 2)
+                    })
+                    deficit -= h
+                    idx += 1
+                
+                # Update total
+                total_h = sum(float(t['hours']) for t in current_tasks)
+
+            # Final Normalize (Scaling down if needed, or fixing tiny precision errors)
+            scale_factor = target_daily_hours / total_h if total_h > 0 else 1
+            
+            running_sum = 0
+            for i, t in enumerate(current_tasks):
+                # For last item, take the remainder to be exact
+                if i == len(current_tasks) - 1:
+                    new_h = target_daily_hours - running_sum
+                else:
+                    new_h = float(t['hours']) * scale_factor
+                    running_sum += new_h
+                
+                # Sanity check: if new_h > 3.0 (very unlikely if we filled specifically), clamp it?
+                # But strict 8h is priority. If we scaled down, it's <= 3. If we filled, it's <= 3.
+                t['hours'] = round(new_h, 2)
+                
+            final_schedule[day] = current_tasks
                 
         return final_schedule
